@@ -27,11 +27,12 @@ jobs:
           echo "auth off" >> ~/.msmtprc  # Assuming no authentication (configure as needed)
           echo "host 127.0.0.1" >> ~/.msmtprc  # Local SMTP server
           echo "port 465" >> ~/.msmtprc  # Use port 465 for SSL
-          echo "from sender@examp.com" >> ~/.msmtprc  # Change this to your sender email
-          echo "to recipient@exame.com" >> ~/.msmtprc  # Change this to the recipient email
+          echo "from sender@example.com" >> ~/.msmtprc  # Replace with actual sender email
+          echo "to phanthomtables@gmail.com" >> ~/.msmtprc  # Replace with actual recipient email
           chmod 600 ~/.msmtprc  # Secure the config file
 
-      - name: Send email via local SMTP (port 465)
+      - name: Test msmtp configuration
         run: |
-          echo "Subject: Test Email from GitHub Actions (Port 465)" | msmtp -v recipient@example.com
-          echo "This email was sent via SSL on port 465 using msmtp." | msmtp recipient@example.com
+          cat ~/.msmtprc  # Print the configuration file for debugging
+          echo "Subject: Test Email from GitHub Actions (Port 465)" | msmtp -v phanthomtables@gmail.com
+          echo "This email was sent via SSL on port 465 using msmtp." | msmtp phanthomtables@gmail.com
