@@ -20,19 +20,18 @@ jobs:
 
       - name: Configure msmtp (using SSL and port 465)
         run: |
-          # Create an msmtp configuration file
+          # Create msmtp configuration file
           echo "defaults" > ~/.msmtprc
           echo "tls on" >> ~/.msmtprc  # Enable TLS
           echo "tls_certcheck off" >> ~/.msmtprc  # Disable certificate checking for simplicity
           echo "auth off" >> ~/.msmtprc  # Assuming no authentication (configure as needed)
           echo "host 127.0.0.1" >> ~/.msmtprc  # Local SMTP server
           echo "port 465" >> ~/.msmtprc  # Use port 465 for SSL
-          echo "from sender@example.com" >> ~/.msmtprc
-          echo "to recipient@example.com" >> ~/.msmtprc
+          echo "from sender@examp.com" >> ~/.msmtprc  # Change this to your sender email
+          echo "to recipient@exame.com" >> ~/.msmtprc  # Change this to the recipient email
           chmod 600 ~/.msmtprc  # Secure the config file
 
       - name: Send email via local SMTP (port 465)
         run: |
-          # Send email using msmtp
-          echo "Subject: Test Email from GitHub Actions (Port 465)" | msmtp recipient@example.com
+          echo "Subject: Test Email from GitHub Actions (Port 465)" | msmtp -v recipient@example.com
           echo "This email was sent via SSL on port 465 using msmtp." | msmtp recipient@example.com
